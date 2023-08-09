@@ -1,0 +1,239 @@
+﻿
+::-webkit-scrollbar {
+    display: none;
+}
+
+.regcontainer {
+    position: relative;
+    display: flex;
+    margin: 20px;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 20px;
+    border-radius: 50px;
+    max-width: 700px;
+    width: 100%;
+    box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    backdrop-filter: blur(5px);
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    margin-left: 200px;
+}
+
+.left-column {
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid rgba(255, 255, 255, 0.4);
+    align-items: flex-start;
+}
+
+.registration-form {
+    display: grid;
+    gap: 20px;
+    padding: 20px;
+}
+
+    .registration-form label {
+        font-weight: bold;
+        color: #ffffff;
+    }
+
+span {
+    color: #ffffff;
+}
+
+.registration-form .form-group {
+    display: grid;
+    gap: 5px;
+}
+
+.registration-form select,
+.textbox {
+    padding: 12px;
+    border: 1px solid #888888;
+    border-radius: 16px;
+    color: #000000;
+    background-color: rgb(255, 255, 255);
+}
+
+.registration-form textarea {
+    resize: vertical;
+}
+
+
+
+.register-button {
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #1e0079a7, #0f003d);
+    color: #ffffff;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+    .register-button:hover {
+        background: linear-gradient(135deg, #0f0d6c, #1d1b94);
+    }
+
+::placeholder {
+    color: black;
+}
+
+.registration-form .form-group.flex-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+    .registration-form .form-group.flex-container div,
+    .registration-form label {
+        flex: 1;
+    }
+
+select {
+    margin-top: 5px;
+}
+
+#date-of-birth {
+    max-width: 160px;
+}
+
+.about-us {
+    padding: 20px;
+    color: white;
+    margin-right: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+    .about-us h2 {
+        font-size: 24px;
+        margin-bottom: 10px;
+        font-weight: 500;
+        color: #ffffff;
+        text-transform: uppercase;
+    }
+
+    .about-us p {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .about-us::after {
+        content: "";
+        display: block;
+        width: 1px;
+        background-color: rgba(255, 255, 255, 0.4);
+        height: 100%;
+        position: absolute;
+        top: 0;
+        right: -5px;
+    }
+
+.login-section {
+    flex: 1;
+    max-height: 150px;
+    padding: 20px;
+    color: white;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+    .login-section h2 {
+        font-size: 24px;
+        margin-bottom: 10px;
+        font-weight: 400;
+    }
+
+.social-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.registration-form .form-group.flex-container div.form-group {
+    flex: 2;
+}
+
+    .registration-form .form-group.flex-container div.form-group.hobbies {
+        flex: 2;
+    }
+
+    .registration-form .form-group.flex-container div.form-group.gender {
+        flex: 1;
+    }
+
+.google-button,
+.fb-button {
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #ffffff;
+    color: rgb(255, 0, 0);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+
+    .google-button:hover,
+    .fb-button:hover {
+        background-color: #ff0000dc;
+        color: rgb(255, 255, 255);
+    }
+
+.google-logo,
+.fb-logo {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.fb-button {
+    color: blue;
+}
+
+gen, maingen, reg {
+    color: white;
+    margin-right: 10px
+}
+
+maingen {
+    font-size: 25px;
+}
+
+reg {
+    font-size: 35px;
+    text-align: center;
+}
+
+form {
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+#btnRegister {
+    color: red;
+}
+
+#userDetailsDiv {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: rgba(255, 0, 0, 0.8);
+    color: white;
+    border-radius: 10px;
+    font-size: 14px;
+    line-height: 1.6;
+}

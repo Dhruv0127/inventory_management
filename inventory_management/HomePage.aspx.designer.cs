@@ -11,25 +11,16 @@ namespace inventory_management
 {
 
 
-    public partial class WebForm2
+    public partial class WebForm3
     {
 
         /// <summary>
-        /// Repeater1 control.
+        /// RepeaterOfHomepage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater Repeater1;
-
-        /// <summary>
-        /// Button1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Repeater RepeaterOfHomepage;
     }
 }

@@ -1,0 +1,93 @@
+﻿.card {
+    display:flex;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+    
+}
+
+
+.card-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+.card-image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.card-body {
+    display: flex;
+    align-items: center;
+}
+
+.card-title {
+    flex-grow: 1;
+    margin: 0;
+}
+
+.quantity {
+    margin-left: 10px;
+}
+
+.flex-container{
+    display:flex;
+}
+
+.card:hover {
+    transform: none;
+}
+
+.main-row {
+    width: 500px;
+    color: red;
+    height: 30px
+}
+
+.first-btn {
+    float: left;
+    width: 50%;
+    display: block;
+    background-color: white;
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    border: 0.5px solid lightgray; /* Red border */
+    text-align: center;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+    .first-btn:hover {
+        background-color: yellow;
+        color: black;
+        border-color: greenyellow;
+    }
+
+
+
+.second-btn {
+    width: 50%;
+    float: right;
+    display: block;
+    background-color: #FFFFFF; /* White background color */
+    color: #FF0000; /* Red text color */
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 6px;
+    border: 0.5px solid lightgray; /* Red border */
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Transition properties */
+}
+
+    .second-btn:hover {
+        background-color: #FF4500; /* Orange background color on hover */
+        color: #FFFFFF; /* White text color on hover */
+        border-color: #FF4500; /* Orange border on hover */
+    }

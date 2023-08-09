@@ -14,16 +14,16 @@ namespace inventory_management
     public partial class WebForm2 : System.Web.UI.Page
     {
         String table_name = "Inventory";
-        private SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""E:\App Dev\Net\inventory_management\inventory_management\App_Data\inventiryDB.mdf"";Integrated Security=True");
+        private SqlConnection conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""E:\App Dev\Net\inventory_management\inventory_management\App_Data\inventiryDB.mdf"";Integrated Security=True");
         protected void Page_Load(object sender, EventArgs e)
         {
             SqlCommand cmd = new SqlCommand();
-            if (con.State == System.Data.ConnectionState.Open) { con.Close(); }
-            con.Open();
+            if (conn.State == System.Data.ConnectionState.Open) { conn.Close(); }
+            conn.Open();
             if (!IsPostBack)
             {
-                DataTable rstData;
-                rstData = MyRst($"select * from {table_name}");
+                DataTable rstData = MyRst($"select * from {table_name}");
+                ViewState["InventoryData"] = rstData;
 
                 Repeater1.DataSource = rstData;
                 Repeater1.DataBind();
@@ -32,27 +32,97 @@ namespace inventory_management
         public DataTable MyRst(string strSQL)
         {
             DataTable rstData = new DataTable();
-            using (SqlConnection conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""E:\App Dev\Net\inventory_management\inventory_management\App_Data\inventiryDB.mdf"";Integrated Security=True"))
             {
                 using (SqlCommand cmdSQL = new SqlCommand(strSQL, conn))
                 {
-                    conn.Open();
                     rstData.Load(cmdSQL.ExecuteReader());
                     rstData.TableName = strSQL;
                 }
             }
             return rstData;
-            /*<div style="border-style:solid;color:black;width:320px;height:450px;float:left;margin-right:10px;margin-bottom:10px">
-                                <div style="text-align:center;padding:2px 10px 2px 10px">
-                                    <asp:Image ID="Image1" runat="server" 
-                                        ImageUrl = '<%# Eval("ImagePath") %>' Width="170" />
-                                    <h4>Engine</h4>
-                                    <asp:Label ID="ItemNameLabel" runat="server" Text='<%# Eval("ItemName") %>' />
-                                    <h4>Description</h4>
-                                    <asp:Label ID="QuantityLabel" runat="server" Text='<%# Eval("Quantity") %>' />
-                                    <asp:Label ID="PriceLabel" runat="server" Text='<%# Eval("Price") %>' />
-                                </div>
-                            </div>*/
+        }
+        protected void btnDecrease_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            int itemIndex = Convert.ToInt32(btn.CommandArgument);
+
+            DataTable rstData = (DataTable)ViewState["InventoryData"];
+            int quantity = Convert.ToInt32(rstData.Rows[itemIndex]["Quantity"]);
+
+            if (quantity > 0)
+            {
+                rstData.Rows[itemIndex]["Quantity"] = quantity - 1;
+                UpdateDatabase(rstData);
+
+                Repeater1.DataSource = rstData;
+                Repeater1.DataBind();
+            }
+        }
+
+        protected void btnIncrease_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            int itemIndex = Convert.ToInt32(btn.CommandArgument);
+
+            DataTable rstData = (DataTable)ViewState["InventoryData"];
+            int quantity = Convert.ToInt32(rstData.Rows[itemIndex]["Quantity"]);
+
+            rstData.Rows[itemIndex]["Quantity"] = quantity + 1;
+            UpdateDatabase(rstData);
+
+            Repeater1.DataSource = rstData;
+            Repeater1.DataBind();
+        }
+
+        private void UpdateDatabase(DataTable rstData)
+        {
+            using (SqlConnection conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""E:\App Dev\Net\inventory_management\inventory_management\App_Data\inventiryDB.mdf"";Integrated Security=True"))
+            {
+                using (SqlDataAdapter adapter = new SqlDataAdapter($"SELECT * FROM {table_name}", conn))
+                {
+                    SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
+                    adapter.UpdateCommand = builder.GetUpdateCommand();
+                    adapter.Update(rstData);
+                }
+            }
+        }
+        protected void btnDelete_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            int itemIndex = Convert.ToInt32(btn.CommandArgument);
+
+            DataTable rstData = (DataTable)ViewState["InventoryData"];
+            int itemId = Convert.ToInt32(rstData.Rows[itemIndex]["Id"]);
+
+            // Delete the item from the database
+            {
+                using (SqlCommand cmd = new SqlCommand($"DELETE FROM Inventory WHERE Id = @ItemId", conn))
+                {
+                    cmd.Parameters.AddWithValue("@ItemId", itemId);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+
+            // Refresh the data and Repeater
+            rstData = MyRst($"SELECT * FROM {table_name}");
+            ViewState["InventoryData"] = rstData;
+
+            Repeater1.DataSource = rstData;
+            Repeater1.DataBind();
+        }
+
+        protected void btnUpdate_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            int itemIndex = Convert.ToInt32(btn.CommandArgument);
+
+            // Implement your update logic here
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            //navigation to admin page 
+            Response.Redirect("Admin.aspx");
         }
     }
 }
