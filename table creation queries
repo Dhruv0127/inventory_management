@@ -1,0 +1,30 @@
+
+CREATE TABLE [dbo].[cart_table] (
+    [cart_id]            INT             IDENTITY (1, 1) NOT NULL,
+    [item_id]            INT             NOT NULL,
+    [user_id]            INT             NOT NULL,
+    [item_name]          VARCHAR (100)   NULL,
+    [user_item_quantity] INT             NOT NULL,
+    [total_amount]       DECIMAL (10, 2) NOT NULL,
+    PRIMARY KEY CLUSTERED ([cart_id] ASC)
+);
+
+CREATE TABLE [dbo].[Inventory] (
+    [Id]          INT           IDENTITY (1, 1) NOT NULL,
+    [ImagePath]   VARCHAR (MAX) NULL,
+    [ItemName]    VARCHAR (20)  NULL,
+    [Quantity]    INT           NULL,
+    [Price]       INT           NULL,
+    [description] VARCHAR (MAX) NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
+CREATE TABLE [dbo].[Users] (
+    [Id]            INT          IDENTITY (1, 1) NOT NULL,
+    [user_name]     VARCHAR (50) NULL,
+    [user_email]    VARCHAR (50) NULL,
+    [user_password] VARCHAR (50) NULL,
+    [user_dob]      DATE         NULL,
+    [age ]          INT          NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
